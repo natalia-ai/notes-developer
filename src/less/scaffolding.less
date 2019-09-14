@@ -1,6 +1,8 @@
 body {
   margin: 0;
   padding: 0;
+  color: @text-color-light;
+  font-family: "Open Sans";
 }
 
 img {
@@ -29,6 +31,16 @@ img {
   margin: 0;
   border: none;
   overflow: hidden;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0 10px;
+  max-width: 945px;
+
+  @media (min-width: @min-md) {
+    padding: 0 25px;
+  }
 }
 
 // \ all class
