@@ -2,11 +2,29 @@ body {
   margin: 0;
   padding: 0;
   color: @text-color-light;
-  font-family: "Open Sans";
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
 img {
   max-width: 100%;
+  display: inline-block;
+}
+
+main {
+  display: block;
+  width: 100%;
+  max-width: 945px;
+  margin: 0 auto;
+  padding: 0 10px;
+  box-sizing: border-box;
+
+  @media (min-width: @min-md) {
+    padding: 0 20px;
+  }
+
+  @media (min-width: @min-lg) {
+    padding: 0 20px;
+  }
 }
 
 // all class
@@ -31,16 +49,6 @@ img {
   margin: 0;
   border: none;
   overflow: hidden;
-}
-
-.container {
-  margin: 0 auto;
-  padding: 0 10px;
-  max-width: 945px;
-
-  @media (min-width: @min-md) {
-    padding: 0 25px;
-  }
 }
 
 // \ all class
