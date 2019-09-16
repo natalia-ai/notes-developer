@@ -1,33 +1,33 @@
 header.header
+  .container
+    .header__logo
 
-  .header__logo
+      svg(xmlns="http://www.w3.org/2000/svg",  viewBox="0 0 64 64", width="30", height="30")
+        circle(fill="#17152f", cx="32", cy="32", r="32")
+        path(fill="#f7f6ff", d="M7.75 32.98v-1.99l9.01-5.92v3.41l-5.44 3.43v.16l5.44 3.43v3.43l-9.01-5.95zm12.06 10.1v-2.81h11.34v2.81H19.81zm14.4 0l7.41-22.16h3.04l-7.41 22.16h-3.04zm13.03-7.58l5.44-3.43v-.16l-5.44-3.43v-3.41l9.01 5.9v1.99l-9.01 5.97V35.5z")
 
-    svg(xmlns="http://www.w3.org/2000/svg",  viewBox="0 0 64 64", width="30", height="30")
-      circle(fill="#17152f", cx="32", cy="32", r="32")
-      path(fill="#f7f6ff", d="M7.75 32.98v-1.99l9.01-5.92v3.41l-5.44 3.43v.16l5.44 3.43v3.43l-9.01-5.95zm12.06 10.1v-2.81h11.34v2.81H19.81zm14.4 0l7.41-22.16h3.04l-7.41 22.16h-3.04zm13.03-7.58l5.44-3.43v-.16l-5.44-3.43v-3.41l9.01 5.9v1.99l-9.01 5.97V35.5z")
+      a(href="#") Записки верстальщика
 
-    a(href="#") Записки верстальщика
+    nav.header__nav
 
-  nav.header__nav
+      ul.header__list.list-rezet
 
-    ul.header__list.list-rezet
+        li.header__item
+          a(href="#home")
+            span.visually-hidden наверх
 
-      li.header__item
-        a(href="#")
-        span.visually-hidden наверх
-
-        svg(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 32 32", width="17px", height="17px")
-          path(d="M32 19l-6-6v-9h-4v5l-6-6-16 16v1h4v10h10v-6h4v6h10v-10h4z", fill="transparent", stroke="#f4f4f2", stroke-width="2")
+            svg(xmlns="http://www.w3.org/2000/svg", viewBox="0 0 32 32", width="19px", height="19px")
+              path(d="M32 19l-6-6v-9h-4v5l-6-6-16 16v1h4v10h10v-6h4v6h10v-10h4z", fill="transparent", stroke="#f4f4f2", stroke-width="3")
 
 
-      li.header__item
-        a(href="#") css
+        li.header__item
+          a(href="#css") css
 
-      li.header__item
-        a(href="#") js
+        li.header__item
+          a(href="#js") js
 
-      li.header__item
-        a(href="#") svg
+        li.header__item
+          a(href="#svg") svg
 
-      li.header__item
-        a(href="#") about
+        li.header__item
+          a(href="#") О бо мне
