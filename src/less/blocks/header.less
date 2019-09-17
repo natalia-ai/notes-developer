@@ -1,15 +1,13 @@
-@headerLinkSize: 14pt;
-@media (min-width: @min-md) {
-  @headerLinkSize: 17pt;
-}
-@media (min-width: @min-lg) {
-  @headerLinkSize: 18pt;
-}
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
   display: block;
   min-height: 199px;
   background-image: url(../img/bg_head@768.png);
-  background-position: center top;
+  background-position: center -30px;
   background-repeat: no-repeat;
   background-size: 768px auto;
 
@@ -17,6 +15,7 @@
     padding-top: 20px;
     background-image: url(../img/bg_head@1280.png);
     background-size: 1280px auto;
+    background-position: center top;
 
     .container {
       display: flex;
@@ -28,6 +27,10 @@
   @media (min-width: 1280px) {
     background-image: url(../img/bg_head@2000.png);
     background-size: 2000px auto;
+  }
+
+  @media (max-height: 400px) {
+    background-position: center -70px;
   }
 }
 
@@ -43,7 +46,7 @@
     }
 
     & a {
-      font-size: @headerLinkSize;
+      font-size: 18px;
       font-weight: 300;
       color: #ffffff;
       text-transform: uppercase;
@@ -64,9 +67,9 @@
 
   color: #ffffff;
   text-transform: uppercase;
-  font-size: @headerLinkSize;
+  font-size: 18px;
   text-decoration: none;
-  font-weight: 300;
+  font-weight: 400;
 
   @media (min-width: @min-md) {
     padding: 5px 0 0;

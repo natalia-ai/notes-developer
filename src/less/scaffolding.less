@@ -1,15 +1,20 @@
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
+  height: 100%;
   color: @text-color-light;
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
+
 }
 
 img {
   max-width: 100%;
   display: inline-block;
 }
-
+main {
+  height: 100%;
+}
 main,
 .container {
   display: block;
@@ -52,4 +57,19 @@ main,
   overflow: hidden;
 }
 
+section {
+  min-height: 100vh;
+  height: 100%;
+  padding-top: 80px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (min-width: @min-md) {
+    padding-top: 80px;
+  }
+}
 // \ all class
