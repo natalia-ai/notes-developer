@@ -1,17 +1,17 @@
 function bdCanvas() {
 
   opts = {
-    minRadius: 0.5,
-    maxRadius: 1.4,
-    colors: ["rgba(255, 255, 255, 0.7)", "rgba(252, 244, 201, 0.7)", "rgba(201, 252, 201, 0.7)", "rgba(201, 236, 252, 0.7)", "rgba(229, 201, 252, 0.7)", "rgba(252, 201, 201, 0.7)", "rgba(252, 201, 241, 0.7)", "rgba(252, 201, 201, 0.7)"],
+    minRadius: 0.3,
+    maxRadius: 1.5,
+    colors: ["rgba(255, 255, 255, 0.5)", "rgba(252, 244, 201, 0.5)", "rgba(201, 252, 201, 0.5)", "rgba(201, 236, 252, 0.5)", "rgba(229, 201, 252, 0.5)", "rgba(252, 201, 201, 0.5)", "rgba(252, 201, 241, 0.5)", "rgba(252, 201, 201, 0.5)"],
     delay: 90,
-    step: 0.1
+    step: 0.05
   }
 
   let canvas = document.querySelector("#bdCanvas");
 
   resizeCanvas();
-  
+
   function resizeCanvas() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
@@ -46,6 +46,13 @@ function bdCanvas() {
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
       ctx.fillStyle = this.color;
       ctx.fill();
+
+      ctx.shadowOffsetX = 0;
+      ctx.shadowOffsetY = 0;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 14;
+
+
       ctx.closePath();
     }
 
@@ -55,7 +62,7 @@ function bdCanvas() {
     }
 
     this.check = function () {
-      if(this.radius > opts.maxRadius || this.radius < opts.minRadius) {
+      if (this.radius > opts.maxRadius || this.radius < opts.minRadius) {
         this.vector *= -1;
       }
     }
@@ -64,17 +71,17 @@ function bdCanvas() {
   function setup() {
     arrStars = [];
 
-    for (let i = 0; i < (w / 40) * (h / 40); i++) {
+    for (let i = 0; i < (w / 35) * (h / 35); i++) {
       arrStars.push(new Stars(w, h));
       arrStars[i].draw();
     }
-    loop ()
+    loop()
   }
 
   setup();
 
-  function loop () {
-    animations = setInterval(function() {
+  function loop() {
+    animations = setInterval(function () {
       ctx.clearRect(0, 0, w, h);
       for (let i = 0; i < arrStars.length; i++) {
         arrStars[i].update();
