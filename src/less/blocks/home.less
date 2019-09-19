@@ -1,21 +1,62 @@
 .home__title {
   margin: 0;
   padding: 7vh 0 0;
+  max-width: 400px;
 
   text-align: center;
   font-size: 9.5vw;
   line-height: 1.1;
   text-transform: uppercase;
   font-weight: normal;
+
+  @media (min-width: 480px) {
+    font-size: 45px;
+  }
+  @media (min-width: @min-md) {
+    padding: 115px 0 0;
+  }
+  @media (min-width: @min-lg) {
+    max-width: 100%;
+    padding: 40px 0 0;
+  }
 }
 
 .home__subtitle {
   margin: 0;
   padding: 3vh 0 0;
+  max-width: 400px;
 
   text-align: center;
   font-size: 6vw;
   line-height: 1.1;
   text-transform: uppercase;
   font-weight: normal;
+
+  @media (min-width: 405px) {
+    font-size: 24px;
+  }
+
+  @media (min-width: @min-md) {
+    padding: 45px 0 0;
+  }
+
+  @media (min-width: @min-lg) {
+    max-width: 100%;
+    padding: 40px 0 0;
+  }
+}
+
+@media (min-width: @min-md) {
+  .home__logo {
+    width: 165px;
+    height: 165px;
+  }
+}
+
+.home__btn {
+  margin:  8vh 0 0;
+
+  @media (min-width: @min-md) {
+    margin: 140px 0 0;
+  }
 }

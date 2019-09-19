@@ -55,12 +55,25 @@ img {
   overflow: hidden;
 }
 
+section {
+  height: 100vh;
+
+  @media (max-height: 500px) {
+    height: auto;
+  }
+}
+
 .flex-column-center {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
+
+  @media (max-height: 500px) {
+    height: auto;
+    padding: 50px 0;
+  }
 }
 
 // \ all class

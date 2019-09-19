@@ -3,12 +3,12 @@
   background-color: transparent;
   border: 1px solid #ffff00;
   padding: 0;
-  margin:  8vh 0 0;
+  margin:  0;
   box-sizing: border-box;
   height: 50px;
+  border-radius: 25px;
   width: 100%;
   max-width: 300px;
-  border-radius: 25px;
   
 
   color: @text-color-light;
@@ -16,4 +16,19 @@
   line-height: 50px;
   text-decoration: none;
   font-size: 23px;
+
+  @media (min-width: @min-md) {
+    height: 80px;
+
+    line-height: 80px;
+    border-radius: 40px;
+  }
+
+  @media (min-width: @min-lg) {
+    height: 50px;
+    border-radius: 25px;
+    max-width: 360px;
+
+    line-height: 50px;
+  }
 }
