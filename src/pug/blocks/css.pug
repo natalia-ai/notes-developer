@@ -1,0 +1,25 @@
+//- миксины 
+mixin card(img, title, text)
+  
+  li.slider__item
+    div.slider__img-container
+      img(src="img/" + img, alt="#")
+    h3.slider__title #{title}
+    p.slider__text #{text}
+    a(href="#") подробнее
+
+
+
+section#css.css.no-js
+
+  .flex-column-center
+    
+    h2.section-title css
+
+    ul.sider.list-rezet
+
+      +card("imgSlide-1.jpg", "css", "Формальный язык описания внешнего вида документа, написанного с использованием языка разметки. Преимущественно ")
+
+      +card("imgSlide-2.jpg", "js", "Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Заголовок свою маленькая ")
+      
+      +card("imgSlide-3.jpg", "svg", "повстречался необходимыми бросил языком дороге маленькая вдали! Агентство дорогу lorem, заглавных диких первую живет?")

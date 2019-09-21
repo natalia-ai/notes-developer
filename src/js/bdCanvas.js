@@ -2,10 +2,10 @@ function bdCanvas() {
 
   opts = {
     minRadius: 0.3,
-    maxRadius: 1.5,
+    maxRadius: 1.0,
     colors: ["rgba(255, 255, 255, 0.5)", "rgba(252, 244, 201, 0.5)", "rgba(201, 252, 201, 0.5)", "rgba(201, 236, 252, 0.5)", "rgba(229, 201, 252, 0.5)", "rgba(252, 201, 201, 0.5)", "rgba(252, 201, 241, 0.5)", "rgba(252, 201, 201, 0.5)"],
-    delay: 90,
-    step: 0.05
+    delay: 100,
+    step: 0.02
   }
 
   let canvas = document.querySelector("#bdCanvas");
@@ -71,7 +71,7 @@ function bdCanvas() {
   function setup() {
     arrStars = [];
 
-    for (let i = 0; i < (w / 35) * (h / 35); i++) {
+    for (let i = 0; i < (w / 50) * (h / 50); i++) {
       arrStars.push(new Stars(w, h));
       arrStars[i].draw();
     }
