@@ -4,9 +4,10 @@ mixin card(img, title, text)
   li.slider__item
     div.slider__img-container
       img(src="img/" + img, alt="#")
-    h3.slider__title #{title}
-    p.slider__text #{text}
-    a(href="#") подробнее
+    .slider__text-wrap
+      h3.slider__title #{title}
+      p.slider__text #{text}
+      a.slider__link(href="#") подробнее
 
 
 
@@ -16,7 +17,7 @@ section#css.css.no-js
     
     h2.section-title css
 
-    ul.sider.list-rezet
+    ul.sider
 
       +card("imgSlide-1.jpg", "css", "Формальный язык описания внешнего вида документа, написанного с использованием языка разметки. Преимущественно ")
 
