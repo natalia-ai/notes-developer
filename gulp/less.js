@@ -9,7 +9,7 @@ var gulp = require("gulp"),
 
 
 gulp.task("less", function () {
-  return gulp.src("src/less/style.less")
+  return gulp.src(["src/less/style.less", "src/less/ie.less"])
     .pipe(plumber({
       errorHandler: notify.onError(function(err){
         return {
