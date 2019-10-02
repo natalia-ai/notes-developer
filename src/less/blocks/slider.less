@@ -14,6 +14,7 @@
   width: 100%;
   text-size-adjust: 100%;
   display: flex;
+  user-select: none;
 }
 
 .no-js {
@@ -42,10 +43,21 @@
   width: 150px;
   height: 150px;
   margin: 0 auto 0;
+  position: relative;
 
   img {
     display: block;
     margin: 0 auto;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
