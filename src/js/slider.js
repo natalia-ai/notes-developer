@@ -24,9 +24,11 @@ function slider(my_slider) {
   function windowResize() {
     clearTimeout(check);
     check = setTimeout(function () {
-      clearInterval(animations);
+      
       widhtSlider();
       setWidthHeightSlider();
+      sliderList.style.marginLeft = 0;
+
     }, 100)
   }
 
@@ -35,43 +37,61 @@ function slider(my_slider) {
   startClientX,
   startMarginLeft;
 
-  sliderList.addEventListener("mousedown", function (e) {
 
-    startClientX = e.clientX;
+  // maus
+  sliderList.addEventListener("mousedown", function (e) {
+    mouseTouthDown (e);
+  })
+
+  sliderList.addEventListener("mousemove", function (e) {
+    mouseToucthMove (e);
+  })
+
+  document.addEventListener("mouseup", function (e) {
+    mouseToucthUp  ();
+  })
+
+  // toutch
+
+  sliderList.addEventListener("touchstart", function (e) {
+    mouseTouthDown (e);
+  })
+
+  sliderList.addEventListener("touchmove", function (e) {
+    mouseToucthMove (e);
+  })
+
+  function mouseTouthDown (e) {
+
+    e = e || event;
+
+    startClientX = e.clientX || e.touches[0].clientX;
     startMarginLeft = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
     checkMouseDown = true;
 
-    console.log(startMarginLeft);
-
     return startClientX, startMarginLeft, checkMouseDown;
 
-  })
+  }
 
+  function mouseToucthMove (e) {
 
-
-  sliderList.addEventListener("mousemove", function (e) {
-
+    e = e || event;
     if (checkMouseDown) {
 
+      let newMarginLeft = startMarginLeft + -(startClientX - (e.clientX || e.touches[0].clientX))
       
-      let newMarginLeft = startMarginLeft + -(startClientX - e.clientX)
-      
-      console.log(startClientX);
-
       if (newMarginLeft > 0 ) {
         newMarginLeft = 0;
-        startClientX = e.clientX;
       } else if (newMarginLeft < -((arrSliderItem.length - 1) * myWidhtSlider)) {
         newMarginLeft = -((arrSliderItem.length - 1) * myWidhtSlider)
       }
 
       sliderList.style.marginLeft = newMarginLeft + "px";
     }
+  }
 
-  })
-
-  document.addEventListener("mouseup", function (e) {
+  function mouseToucthUp  () {
     checkMouseDown = false;
-  })
+  }
 
 }
