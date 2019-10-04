@@ -61,6 +61,10 @@ function slider(my_slider) {
     mouseToucthMove (e);
   })
 
+  document.addEventListener("touchend", function (e) {
+    mouseToucthUp ();
+  })
+
   function mouseTouthDown (e) {
 
     e = e || event;
@@ -68,6 +72,8 @@ function slider(my_slider) {
     startClientX = e.clientX || e.touches[0].clientX;
     startMarginLeft = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
     checkMouseDown = true;
+
+    sliderList.classList.add("sider--active");
 
     return startClientX, startMarginLeft, checkMouseDown;
 
@@ -92,6 +98,7 @@ function slider(my_slider) {
 
   function mouseToucthUp  () {
     checkMouseDown = false;
+    sliderList.classList.remove("sider--active");
   }
 
 }
