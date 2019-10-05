@@ -24,7 +24,7 @@ function slider(my_slider) {
   function windowResize() {
     clearTimeout(check);
     check = setTimeout(function () {
-      
+
       widhtSlider();
       setWidthHeightSlider();
       sliderList.style.marginLeft = 0;
@@ -32,40 +32,40 @@ function slider(my_slider) {
     }, 100)
   }
 
-  let 
-  checkMouseDown = false,
-  startClientX,
-  startMarginLeft;
+  let
+    checkMouseDown = false,
+    startClientX,
+    startMarginLeft;
 
 
   // maus
   sliderList.addEventListener("mousedown", function (e) {
-    mouseTouthDown (e);
+    mouseTouthDown(e);
   })
 
   sliderList.addEventListener("mousemove", function (e) {
-    mouseToucthMove (e);
+    mouseToucthMove(e);
   })
 
   document.addEventListener("mouseup", function (e) {
-    mouseToucthUp  ();
+    mouseToucthUp();
   })
 
   // toutch
 
   sliderList.addEventListener("touchstart", function (e) {
-    mouseTouthDown (e);
+    mouseTouthDown(e);
   })
 
   sliderList.addEventListener("touchmove", function (e) {
-    mouseToucthMove (e);
+    mouseToucthMove(e);
   })
 
   document.addEventListener("touchend", function (e) {
-    mouseToucthUp ();
+    mouseToucthUp();
   })
 
-  function mouseTouthDown (e) {
+  function mouseTouthDown(e) {
 
     e = e || event;
 
@@ -79,14 +79,14 @@ function slider(my_slider) {
 
   }
 
-  function mouseToucthMove (e) {
+  function mouseToucthMove(e) {
 
     e = e || event;
     if (checkMouseDown) {
 
       let newMarginLeft = startMarginLeft + -(startClientX - (e.clientX || e.touches[0].clientX))
-      
-      if (newMarginLeft > 0 ) {
+
+      if (newMarginLeft > 0) {
         newMarginLeft = 0;
       } else if (newMarginLeft < -((arrSliderItem.length - 1) * myWidhtSlider)) {
         newMarginLeft = -((arrSliderItem.length - 1) * myWidhtSlider)
@@ -96,9 +96,29 @@ function slider(my_slider) {
     }
   }
 
-  function mouseToucthUp  () {
+  function mouseToucthUp() {
     checkMouseDown = false;
     sliderList.classList.remove("sider--active");
+    moveSlider ();
+  }
+
+  function moveSlider () {
+
+    let upCord = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
+
+    for(let i = 0; i < arrSliderItem.length; i++) {
+
+      if(-(myWidhtSlider/2) < (upCord + myWidhtSlider * i)) {
+
+        sliderList.style.marginLeft = -myWidhtSlider * i + "px";
+
+        return sliderList.style.transition = 400;
+      
+      }
+
+      console.log(-(myWidhtSlider/2) + " - " + upCord + myWidhtSlider * i)
+    }
+
   }
 
 }
