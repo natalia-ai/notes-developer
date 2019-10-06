@@ -1,18 +1,22 @@
 function slider(my_slider) {
 
-  let arrSliderItem = my_slider.querySelectorAll("li"),
-    sliderList = my_slider.querySelector("ul");
+  let
+    arrSliderItem = my_slider.querySelectorAll("li"),
+    sliderList = my_slider.querySelector("ul"),
+    controller = my_slider.querySelector(".controller");
 
   widhtSlider();
   setWidthHeightSlider()
 
   function widhtSlider() {
     myWidhtSlider = my_slider.offsetWidth;
+    myWidhtController = myWidhtSlider/arrSliderItem.length;
     return myWidhtSlider;
   }
 
   function setWidthHeightSlider() {
     sliderList.style.width = arrSliderItem.length * myWidhtSlider + "px";
+    controller.style.width = myWidhtController + "px";
   }
 
   window.addEventListener("resize", function () {
@@ -97,26 +101,32 @@ function slider(my_slider) {
   }
 
   function mouseToucthUp() {
-    checkMouseDown = false;
-    sliderList.classList.remove("sider--active");
-    moveSlider ();
+    if (checkMouseDown) {
+      checkMouseDown = false;
+      sliderList.classList.remove("sider--active");
+      moveSlider();
+    }
   }
 
-  function moveSlider () {
+  function moveSlider() {
 
     let upCord = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
 
-    for(let i = 0; i < arrSliderItem.length; i++) {
+    for (let i = 0; i < arrSliderItem.length; i++) {
 
-      if(-(myWidhtSlider/2) < (upCord + myWidhtSlider * i)) {
+      if (-(myWidhtSlider / 2) < (upCord + myWidhtSlider * i)) {
 
         sliderList.style.marginLeft = -myWidhtSlider * i + "px";
 
-        return sliderList.style.transition = 400;
-      
+        sliderList.style.transition = 250 + "ms";
+
+        return setTimeout(function () {
+          sliderList.style.transition = "";
+        }, 250)
+
       }
 
-      console.log(-(myWidhtSlider/2) + " - " + upCord + myWidhtSlider * i)
+      console.log(-(myWidhtSlider / 2) + " - " + upCord + myWidhtSlider * i)
     }
 
   }
