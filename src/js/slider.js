@@ -3,15 +3,20 @@ function slider(my_slider) {
   let
     arrSliderItem = my_slider.querySelectorAll("li"),
     sliderList = my_slider.querySelector("ul"),
-    controller = my_slider.querySelector(".controller");
+    controller = my_slider.querySelector(".controller"),
+    checkMouseDownController = false,
+    checkMouseDown = false,
+    startClientX,
+    startMarginLeft;
 
-  widhtSlider();
-  setWidthHeightSlider()
+
+    widhtSlider();
+    setWidthHeightSlider();
 
   function widhtSlider() {
     myWidhtSlider = my_slider.offsetWidth;
     myWidhtController = myWidhtSlider/arrSliderItem.length;
-    return myWidhtSlider;
+    return myWidhtSlider, myWidhtController;
   }
 
   function setWidthHeightSlider() {
@@ -35,12 +40,6 @@ function slider(my_slider) {
 
     }, 100)
   }
-
-  let
-    checkMouseDown = false,
-    startClientX,
-    startMarginLeft;
-
 
   // maus
   sliderList.addEventListener("mousedown", function (e) {
@@ -77,7 +76,7 @@ function slider(my_slider) {
     startMarginLeft = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
     checkMouseDown = true;
 
-    sliderList.classList.add("sider--active");
+    sliderList.classList.add("slider--active");
 
     return startClientX, startMarginLeft, checkMouseDown;
 
@@ -103,7 +102,7 @@ function slider(my_slider) {
   function mouseToucthUp() {
     if (checkMouseDown) {
       checkMouseDown = false;
-      sliderList.classList.remove("sider--active");
+      sliderList.classList.remove("slider--active");
       moveSlider();
     }
   }
@@ -130,5 +129,79 @@ function slider(my_slider) {
     }
 
   }
+
+
+  
+  // maus
+  controller.addEventListener("mousedown", function (e) {
+    mouseTouthDownController(e);
+  })
+
+  document.addEventListener("mousemove", function (e) {
+    mouseToucthMoveController(e);
+  })
+
+  document.addEventListener("mouseup", function (e) {
+    mouseToucthUpController();
+  })
+
+  // toutch
+
+  controller.addEventListener("touchstart", function (e) {
+    mouseTouthDownController(e);
+  })
+
+  document.addEventListener("touchmove", function (e) {
+    mouseToucthMoveController(e);
+  })
+
+  document.addEventListener("touchend", function (e) {
+    mouseToucthUpController();
+  })
+
+
+  function mouseTouthDownController(e) {
+
+    e = e || event;
+
+    startClientX = e.clientX || e.touches[0].clientX;
+    startMarginLeft = Number(getComputedStyle(controller).marginLeft.replace("px", ""));
+    checkMouseDownController = true;
+
+    controller.classList.add("slider--active");
+
+    return startClientX, startMarginLeft, checkMouseDownController;
+
+  }
+
+  function mouseToucthUpController() {
+    if (checkMouseDownController) {
+      checkMouseDownController = false;
+      controller.classList.remove("slider--active");
+    }
+  }
+
+  function mouseToucthMoveController(e) {
+
+    e = e || event;
+    if (checkMouseDownController) {
+
+      let newMarginLeft = startMarginLeft + -(startClientX - (e.clientX || e.touches[0].clientX))
+
+      if (newMarginLeft <= 0) {
+        newMarginLeft = 0;
+      }
+
+      if (newMarginLeft > myWidhtSlider - myWidhtController) {
+        newMarginLeft = myWidhtSlider - myWidhtController;
+      }
+
+
+      controller.style.marginLeft = newMarginLeft + "px";
+    }
+  }
+
+  
+
 
 }
