@@ -7,7 +7,9 @@ function slider(my_slider) {
     checkMouseDownController = false,
     checkMouseDown = false,
     startClientX,
-    startMarginLeft;
+    startMarginLeft,
+    percentSlider,
+    percentController;
 
 
     widhtSlider();
@@ -16,7 +18,10 @@ function slider(my_slider) {
   function widhtSlider() {
     myWidhtSlider = my_slider.offsetWidth;
     myWidhtController = myWidhtSlider/arrSliderItem.length;
-    return myWidhtSlider, myWidhtController;
+    percentSlider = ( myWidhtSlider * (arrSliderItem.length - 1 ) ) / 100 ;
+    percentController = ( myWidhtController * (arrSliderItem.length - 1 ) ) / 100 ;
+
+    return myWidhtSlider, myWidhtController, percentSlider, percentController;
   }
 
   function setWidthHeightSlider() {
@@ -96,6 +101,10 @@ function slider(my_slider) {
       }
 
       sliderList.style.marginLeft = newMarginLeft + "px";
+
+      newMarginLeftController = (newMarginLeft / percentSlider) * percentController;
+
+      controller.style.marginLeft = -newMarginLeftController + "px";
     }
   }
 
@@ -125,7 +134,6 @@ function slider(my_slider) {
 
       }
 
-      console.log(-(myWidhtSlider / 2) + " - " + upCord + myWidhtSlider * i)
     }
 
   }
@@ -143,6 +151,8 @@ function slider(my_slider) {
 
   document.addEventListener("mouseup", function (e) {
     mouseToucthUpController();
+    moveController();
+    moveSlider();
   })
 
   // toutch
@@ -157,6 +167,8 @@ function slider(my_slider) {
 
   document.addEventListener("touchend", function (e) {
     mouseToucthUpController();
+    moveController();
+    moveSlider();
   })
 
 
@@ -196,12 +208,35 @@ function slider(my_slider) {
         newMarginLeft = myWidhtSlider - myWidhtController;
       }
 
-
       controller.style.marginLeft = newMarginLeft + "px";
+
+      newMarginLeftSlider = (newMarginLeft / percentController) * percentSlider;
+
+      sliderList.style.marginLeft = -newMarginLeftSlider + "px";
     }
   }
 
-  
+  function moveController() {
+
+    let upCord = Number(getComputedStyle(controller).marginLeft.replace("px", ""));
+
+    for (let i = 0; i < arrSliderItem.length; i++) {
+
+      if ((myWidhtController / 2) > (upCord - myWidhtController * i)) {
+
+        controller.style.marginLeft = myWidhtController * i + "px";
+
+        controller.style.transition = 250 + "ms";
+
+        return setTimeout(function () {
+          controller.style.transition = "";
+        }, 250)
+
+      }
+
+    }
+
+  }
 
 
 }
