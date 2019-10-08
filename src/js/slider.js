@@ -11,16 +11,16 @@ function slider(my_slider) {
     checkMouseDownController = false,
     // проверка на зажатую кнопку мыши на слайдере
     checkMouseDown = false,
-    // координата при клике на слайдер или контроллер
+    // координата x при клике на слайдер или контроллер
     startClientX,
+    // координата y при клике на слайдер или контроллер
+    startClientY,
     // маргин с которого начинается движение
     startMarginLeft,
     // пикселей в одном проценте ширины слайдера
     percentSlider,
     // пикселей в одном проценте ширины контроллера
-    percentController,
-    // проверка для задержки во время ресайза
-    check;
+    percentController;
 
   // получаем все размеры слайдера
   sizeSlider();
@@ -52,34 +52,10 @@ function slider(my_slider) {
 
   // отслеживаем ресайз
   window.addEventListener("resize", function () {
-
-    // постоянно вызываем функцию с задеркой, в ней же все вызовы функций необходимые после ресайза
-    windowResize();
+    // заново получаем размеры слайдера
+    sizeSlider();
+    MoveSlider();
   })
-
-
-  // определяем завершение ресайза
-  function windowResize() {
-    // отменяем задержку
-    clearTimeout(check);
-
-    // запускаем задержку
-    check = setTimeout(function () {
-
-      // вызов необходимых функций
-
-      // заново получаем размеры слайдера
-      sizeSlider();
-
-      // сдвигаем слайдер на первый слайд
-      sliderList.style.marginLeft = 0;
-
-      // сдвигаем контроллер на первый слайд
-      controller.style.marginLeft = 0;
-
-      // и задержка, 100 ms достаточно
-    }, 100)
-  }
 
   // отслеживание клика и касания по слайдеру
   // клик
@@ -113,6 +89,8 @@ function slider(my_slider) {
     mouseToucthMove(e);
     // движение контроллера
     mouseToucthMoveController(e);
+    // остановить скролл нужно на сенсоре
+    stopScroll();
   })
 
   // поднятие пальца с кнопки мыши (с сенсора)
@@ -137,6 +115,7 @@ function slider(my_slider) {
 
     // получаем начальную координату при клика(касания)
     startClientX = e.clientX || e.touches[0].clientX;
+    startClientY = e.clientY || e.touches[0].clientY;
     // получаем установленный маргин слайдера
     startMarginLeft = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
     // отмечаем что нужно следить за движением мыши
@@ -285,4 +264,12 @@ function slider(my_slider) {
       }
     }
   }
+
+  // останавливаем скролл на сенсоре
+  function stopScroll(e) {
+    if (abs(startClientX - e.clientX) >= abs(startClientY - e.clientY)) {
+      e.preventDefault
+    }
+  }
+
 }
