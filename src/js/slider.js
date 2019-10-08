@@ -23,35 +23,32 @@ function slider(my_slider) {
     check;
 
   // получаем все размеры слайдера
-  widhtSlider();
-  // задаем все размеры слайдеру
-  setWidthHeightSlider();
+  sizeSlider();
 
 
   // функция получения размеров
-  function widhtSlider() {
+  function sizeSlider() {
     // получили ширину слайдера
     myWidhtSlider = my_slider.offsetWidth;
+
     // получили ширину контроллера
     myWidhtController = myWidhtSlider / arrSliderItem.length;
+
     // получили количество пикселей в одном проценте ширины слайдера
     percentSlider = (myWidhtSlider * (arrSliderItem.length - 1)) / 100;
+
     // получили количество пикселей в одном проценте ширины контроллера
     percentController = (myWidhtController * (arrSliderItem.length - 1)) / 100;
+
+    // задаем ширину слайдеру
+    sliderList.style.width = arrSliderItem.length * myWidhtSlider + "px";
+
+    // задаем ширину контроллеру
+    controller.style.width = myWidhtController + "px";
 
     // вернули все переменные что бы они были доступны везде
     return myWidhtSlider, myWidhtController, percentSlider, percentController;
   }
-
-
-  // функция задает размеры слайдеру
-  function setWidthHeightSlider() {
-    // задаем ширину слайдеру
-    sliderList.style.width = arrSliderItem.length * myWidhtSlider + "px";
-    // задаем ширину контроллеру
-    controller.style.width = myWidhtController + "px";
-  }
-
 
   // отслеживаем ресайз
   window.addEventListener("resize", function () {
@@ -72,12 +69,11 @@ function slider(my_slider) {
       // вызов необходимых функций
 
       // заново получаем размеры слайдера
-      widhtSlider();
-      // заново задаем размеры слайдеру
-      setWidthHeightSlider();
+      sizeSlider();
 
       // сдвигаем слайдер на первый слайд
       sliderList.style.marginLeft = 0;
+
       // сдвигаем контроллер на первый слайд
       controller.style.marginLeft = 0;
 
@@ -93,6 +89,14 @@ function slider(my_slider) {
   // касание
   sliderList.addEventListener("touchstart", function (e) {
     mouseTouthDown(e);
+  })
+
+  // клик, касание по контроллеру
+  controller.addEventListener("mousedown", function (e) {
+    mouseTouthDownController(e);
+  })
+  controller.addEventListener("touchstart", function (e) {
+    mouseTouthDownController(e);
   })
 
   // отслеживаем движение курсора и пальца по слайдеру
@@ -116,17 +120,13 @@ function slider(my_slider) {
     // поднятие пальуа при движение слайдера
     mouseToucthUp();
     // доводчик слайдера
-    moveSlider();
-    // доводчик контроллера
-    moveController();
+    MoveSlider();
   })
   document.addEventListener("touchend", function () {
     // поднятие пальуа при движение слайдера
     mouseToucthUp();
     // доводчик слайдера
-    moveSlider();
-    // доводчик контроллера
-    moveController();
+    MoveSlider();
   })
 
   // при клике по слайдеру
@@ -201,15 +201,6 @@ function slider(my_slider) {
     }
   }
 
-  // maus
-  // клик, касание по контроллеру
-  controller.addEventListener("mousedown", function (e) {
-    mouseTouthDownController(e);
-  })
-  controller.addEventListener("touchstart", function (e) {
-    mouseTouthDownController(e);
-  })
-
   // при клике (касании) по контроллеру
   function mouseTouthDownController(e) {
 
@@ -230,7 +221,6 @@ function slider(my_slider) {
 
     // возвращаем все переменные
     return startClientX, startMarginLeft, checkMouseDownController;
-
   }
 
   // движение контроллера
@@ -266,39 +256,8 @@ function slider(my_slider) {
     }
   }
 
-  // доводчик контроллера
-  function moveController() {
-
-    // получаем отступ контроллера
-    let upCord = Number(getComputedStyle(controller).marginLeft.replace("px", ""));
-
-    // проверяем на каком слайде остановились
-    for (let i = 0; i < arrSliderItem.length; i++) {
-
-      // если у текущего слайда отступ меньше половины ширины контроллера (слайдера)
-      if ((myWidhtController / 2) > (upCord - myWidhtController * i)) {
-
-        // делаем изменение маргина анимированным
-        controller.style.transition = 250 + "ms margin";
-
-        // ставим нужный маргин
-        controller.style.marginLeft = myWidhtController * i + "px";
-
-        return setTimeout(function () {
-          // после задержки отменяем анимацию маргина
-          controller.style.transition = "";
-          // задержка равна времени анимации
-        }, 250)
-
-      }
-
-    }
-
-  }
-
-
   // доводчик слайдера
-  function moveSlider() {
+  function MoveSlider() {
 
     // получем отступ слайдера
     let upCord = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
@@ -311,19 +270,19 @@ function slider(my_slider) {
 
         // делаем анимированное движение
         sliderList.style.transition = 250 + "ms margin";
+        controller.style.transition = 250 + "ms margin";
 
-        // ставим данный слайд на начало
+        // ставим данный слайд и контроллер в одно положение
         sliderList.style.marginLeft = -myWidhtSlider * i + "px";
+        controller.style.marginLeft = myWidhtController * i + "px";
 
         // после завершения анимации
         return setTimeout(function () {
           // отманяем анимацию
           sliderList.style.transition = "";
+          controller.style.transition = "";
         }, 250)
       }
     }
   }
-
-
-
 }
