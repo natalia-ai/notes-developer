@@ -108,10 +108,21 @@
 }
 
 .controller {
-  margin-top: -2px;
+  position: relative;
+  margin-top: -8px;
   display: inline-block;
-  background-color: #fff;
-  height: 8px;
-  min-width: 10px;
+  height: 20px;
   cursor: grab;
+
+  &::before {
+    display: block;
+    content: "";
+    height: 8px;
+    width: 100%;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 6px;
+    z-index: 9;
+  }
 }
