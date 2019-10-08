@@ -264,12 +264,4 @@ function slider(my_slider) {
       }
     }
   }
-
-  // останавливаем скролл на сенсоре
-  function stopScroll(e) {
-    if (abs(startClientX - e.clientX) >= abs(startClientY - e.clientY)) {
-      e.preventDefault
-    }
-  }
-
 }
