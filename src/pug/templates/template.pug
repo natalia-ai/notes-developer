@@ -15,9 +15,20 @@ html(lang="ru")
 
   body
 
+    //- миксины 
+    mixin card(img, title, text)
+      
+      li.slider__item
+        div.slider__img-container
+          img(src="img/" + img, alt="#")
+        .slider__text-wrap
+          h3.slider__title #{title}
+          p.slider__text #{text}
+          a.slider__link(href="#") подробнее
+    
 
     block main
-    
+
 
     script(src="js/main-debug.js")
 

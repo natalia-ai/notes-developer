@@ -13,14 +13,16 @@ function slider(my_slider) {
     checkMouseDown = false,
     // координата x при клике на слайдер или контроллер
     startClientX,
-    // координата y при клике на слайдер или контроллер
-    startClientY,
     // маргин с которого начинается движение
     startMarginLeft,
     // пикселей в одном проценте ширины слайдера
     percentSlider,
     // пикселей в одном проценте ширины контроллера
-    percentController;
+    percentController,
+    // ширина слайдера
+    myWidhtSlider,
+    // ширина контроллера
+    myWidhtController;
 
   // получаем все размеры слайдера
   sizeSlider();
@@ -89,8 +91,6 @@ function slider(my_slider) {
     mouseToucthMove(e);
     // движение контроллера
     mouseToucthMoveController(e);
-    // остановить скролл нужно на сенсоре
-    stopScroll();
   })
 
   // поднятие пальца с кнопки мыши (с сенсора)
@@ -115,7 +115,6 @@ function slider(my_slider) {
 
     // получаем начальную координату при клика(касания)
     startClientX = e.clientX || e.touches[0].clientX;
-    startClientY = e.clientY || e.touches[0].clientY;
     // получаем установленный маргин слайдера
     startMarginLeft = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
     // отмечаем что нужно следить за движением мыши
