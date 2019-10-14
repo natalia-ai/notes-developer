@@ -240,6 +240,11 @@ function slider(my_slider) {
     // получем отступ слайдера
     let upCord = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
 
+    
+    if (Math.abs(upCord) > (arrSliderItem.length - 1 ) * myWidhtSlider) {
+      upCord = 0
+    }
+
     // проверяем на каждом слайде
     for (let i = 0; i < arrSliderItem.length; i++) {
 
