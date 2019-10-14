@@ -240,7 +240,7 @@ function slider(my_slider) {
     // получем отступ слайдера
     let upCord = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
 
-    
+    // страховка для ресайза, если отступ после ресайза слишком мольшой
     if (Math.abs(upCord) > (arrSliderItem.length - 1 ) * myWidhtSlider) {
       upCord = 0
     }
