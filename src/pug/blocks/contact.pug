@@ -2,17 +2,19 @@ section#contact.contact.no-js
 
   .flex-column-center.flex-column-center--contact
     
-    h2.section-title Задайте мне вопрос
+    h2.section-title.contact-title Задайте мне вопрос
 
     form.order-form(action="#", method="post")
 
-      input.input-inner(type="text", placeholder="Имя", name="nameUser")
+      .input-block
 
-      input.input-inner(type="tel", placeholder="Телефон", name="telUser")
+        input.input-inner(type="text", placeholder="Имя", name="nameUser")
 
-      input.input-inner(type="email", placeholder="E-mail", name="emailUser")
+        input.input-inner(type="tel", placeholder="Телефон", name="telUser")
 
-      textarea.input-inner(placeholder="Введите текст", name="textUser")
+        input.input-inner(type="email", placeholder="E-mail", name="emailUser")
+
+      textarea.input-inner.inner-textarea(placeholder="Введите текст", name="textUser")
 
       button.btn.contact__btn
         | отправить
