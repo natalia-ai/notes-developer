@@ -17,4 +17,14 @@ function popupContact () {
       document.querySelector(".contact").classList.add("popup");
     })
   }
+
+  document.addEventListener("click", function (e) {
+
+    e = e || event;
+
+    if(e.target == document.querySelector(".contact") || e.target == document.querySelector(".close-popup")) {
+      document.querySelector(".contact").classList.remove("popup");
+    }
+    console.log(e.target)
+  })
 }
