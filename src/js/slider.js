@@ -24,10 +24,6 @@ function slider(my_slider) {
     // ширина контроллера
     myWidhtController;
 
-  // получаем все размеры слайдера
-  sizeSlider();
-
-
   // функция получения размеров
   function sizeSlider() {
     // получили ширину слайдера
@@ -52,60 +48,6 @@ function slider(my_slider) {
     return myWidhtSlider, myWidhtController, percentSlider, percentController;
   }
 
-  // отслеживаем ресайз
-  window.addEventListener("resize", function () {
-    // заново получаем размеры слайдера
-    sizeSlider();
-    MoveSlider();
-  })
-
-  // отслеживание клика и касания по слайдеру
-  // клик
-  sliderList.addEventListener("mousedown", function (e) {
-    mouseTouthDown(e);
-  })
-  // касание
-  sliderList.addEventListener("touchstart", function (e) {
-    mouseTouthDown(e);
-  })
-
-  // клик, касание по контроллеру
-  controller.addEventListener("mousedown", function (e) {
-    mouseTouthDownController(e);
-  })
-  controller.addEventListener("touchstart", function (e) {
-    mouseTouthDownController(e);
-  })
-
-  // отслеживаем движение курсора и пальца по слайдеру
-  // курсор
-  document.addEventListener("mousemove", function (e) {
-    // движение слайдера
-    mouseToucthMove(e);
-    // движение контроллера
-    mouseToucthMoveController(e);
-  })
-  // сенсор
-  document.addEventListener("touchmove", function (e) {
-    // движение слайдера
-    mouseToucthMove(e);
-    // движение контроллера
-    mouseToucthMoveController(e);
-  })
-
-  // поднятие пальца с кнопки мыши (с сенсора)
-  document.addEventListener("mouseup", function () {
-    // поднятие пальуа при движение слайдера
-    mouseToucthUp();
-    // доводчик слайдера
-    MoveSlider();
-  })
-  document.addEventListener("touchend", function () {
-    // поднятие пальуа при движение слайдера
-    mouseToucthUp();
-    // доводчик слайдера
-    MoveSlider();
-  })
 
   // при клике по слайдеру
   function mouseTouthDown(e) {
@@ -241,7 +183,7 @@ function slider(my_slider) {
     let upCord = Number(getComputedStyle(sliderList).marginLeft.replace("px", ""));
 
     // страховка для ресайза, если отступ после ресайза слишком мольшой
-    if (Math.abs(upCord) > (arrSliderItem.length - 1 ) * myWidhtSlider) {
+    if (Math.abs(upCord) > (arrSliderItem.length - 1) * myWidhtSlider) {
       upCord = 0
     }
 
@@ -268,4 +210,62 @@ function slider(my_slider) {
       }
     }
   }
+
+  // отслеживаем ресайз
+  window.addEventListener("resize", function () {
+    // заново получаем размеры слайдера
+    sizeSlider();
+    MoveSlider();
+  })
+
+  // отслеживание клика и касания по слайдеру
+  // клик
+  sliderList.addEventListener("mousedown", function (e) {
+    mouseTouthDown(e);
+  })
+  // касание
+  sliderList.addEventListener("touchstart", function (e) {
+    mouseTouthDown(e);
+  })
+
+  // клик, касание по контроллеру
+  controller.addEventListener("mousedown", function (e) {
+    mouseTouthDownController(e);
+  })
+  controller.addEventListener("touchstart", function (e) {
+    mouseTouthDownController(e);
+  })
+
+  // отслеживаем движение курсора и пальца по слайдеру
+  // курсор
+  document.addEventListener("mousemove", function (e) {
+    // движение слайдера
+    mouseToucthMove(e);
+    // движение контроллера
+    mouseToucthMoveController(e);
+  })
+  // сенсор
+  document.addEventListener("touchmove", function (e) {
+    // движение слайдера
+    mouseToucthMove(e);
+    // движение контроллера
+    mouseToucthMoveController(e);
+  })
+
+  // поднятие пальца с кнопки мыши (с сенсора)
+  document.addEventListener("mouseup", function () {
+    // поднятие пальуа при движение слайдера
+    mouseToucthUp();
+    // доводчик слайдера
+    MoveSlider();
+  })
+  document.addEventListener("touchend", function () {
+    // поднятие пальуа при движение слайдера
+    mouseToucthUp();
+    // доводчик слайдера
+    MoveSlider();
+  })
+
+  // получаем все размеры слайдера
+  sizeSlider();
 }

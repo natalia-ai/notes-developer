@@ -9,6 +9,9 @@
   border-radius: 25px;
   width: 100%;
   max-width: 300px;
+  outline: none;
+
+  transition: @transition;
   
 
   color: @text-color-light;
@@ -30,5 +33,16 @@
     max-width: 360px;
 
     line-height: 50px;
+  }
+
+  &:hover {
+    background-color: #ffff00;
+    color: #000;
+    box-shadow: 0 0 10px rgba(255, 255, 0, 0.5);
+  }
+
+  &:focus {
+    background-color: #ffff00;
+    color: #000;
   }
 }
