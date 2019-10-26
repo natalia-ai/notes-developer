@@ -12,5 +12,10 @@ window.onload = function () {
   this.slider( this.document.querySelector(".slider_1-js") );
   this.slider( this.document.querySelector(".slider_2-js") );
 
+  // вызов всплывающего окна
   popupContact ();
+
+  // скролл 
+
+  myScroll();
 };
