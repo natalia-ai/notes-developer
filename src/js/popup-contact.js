@@ -9,8 +9,12 @@ function popupContact () {
 
     newButton.innerHTML = arrButton[i].innerHTML;
 
-    newButton.classList = arrButton[i].classList;
+    let aarClasslist = arrButton[i].classList;
 
+    for (let i = 0; i < aarClasslist.length; i++) {
+      newButton.classList.add(aarClasslist[i]);
+    }
+    
     parentDiv.replaceChild(newButton, arrButton[i]);
     
     newButton.addEventListener("click", function () {
