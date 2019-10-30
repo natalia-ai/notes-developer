@@ -9,13 +9,13 @@ window.onload = function () {
   noJs();
 
   // вызов всех слайдеров
-  this.slider( this.document.querySelector(".slider_1-js") );
-  this.slider( this.document.querySelector(".slider_2-js") );
+  slider( document.querySelector(".slider_1-js") );
+  slider( document.querySelector(".slider_2-js") );
+  slider( document.querySelector(".slider_3-js") );
 
   // вызов всплывающего окна
   popupContact ();
 
   // скролл 
-
-  myScroll();
+  myScroll ();
 };

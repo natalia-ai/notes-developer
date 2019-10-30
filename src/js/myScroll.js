@@ -1,37 +1,58 @@
 function myScroll() {
 
-  // получаем ссылки
-  let arrLincks = document.querySelectorAll(".header__nav a");
+  // по клику на навигацию
+  document.querySelector(".header__nav").addEventListener("click", function (e) {
 
-  // перебираем ссылки
-  for (let i = 0; i < arrLincks.length; i++) {
+    e = e || event;
 
-    // блок к которому скролим
-    let goScroll = document.querySelector(arrLincks[i].getAttribute("href"));
+    e.preventDefault();
+    // вызываю функцию скролла
+    scrollMenu(e.target.getAttribute("href"))
 
-    // клик по ссылке
-    arrLincks[i].addEventListener("click", function (e) {
-
-      e = e || event;
-
-      // отьеняем по умолчанию
-      e.preventDefault();
-
-      return handleLinkClick(goScroll);
-    })
-  }
-  // \перебираем ссылки
-  
+    // переменная для остановки анимации
+    var temp;
     // функция скролла
-    function handleLinkClick(goScroll) {
-      console.log(goScroll);
+    function scrollMenu(blockId) {
 
-      return goScroll.scrollIntoView(
-        {
-        block: "start",
-        behavior: "smooth"
-      }
-      );
+      // отмена анимации
+      cancelAnimationFrame(temp);
+
+      // время начала анимации
+      var start = performance.now();
+
+      // высота скролла страницы
+      var from = window.pageYOffset || document.documentElement.scrollTop,
+        // высота от верхнего края окна браузера до блока
+        to = document.querySelector(blockId).getBoundingClientRect().top;
+
+      // время анимации из расчета 3000px за секунду
+      duration = 1000 * Math.abs(to) / 2000;
+
+      // анимация скролла
+      requestAnimationFrame(function step(timestamp) {
+        // timestamp метка времени от начала анимации
+        // сколько прошло времени (timestamp - start)
+        // (timestamp - start) / duration приравниваем к 1
+        var progress = (timestamp - start) / duration;
+        1 <= progress && (progress = 1);
+        // from + to расстояние от верха документа до верха блока
+        // from + to * progress промежуточное расстояние до блока. progress == 1 мы на месте
+        // изменение высоты скролла
+        console.log(from + to * progress | 0)
+        window.scrollTo(0, from + to * progress | 0);
+
+        // остановка анимации
+        // 1 > progress анимация продолжается или
+        // задаем hash 
+
+        (1 > progress) ? temp = requestAnimationFrame(step): (document.location.hash = blockId, e.target.blur());
+
+        // отменяем прокрутку если крутим колесом мышки
+        document.addEventListener("wheel", function () {
+          cancelAnimationFrame(temp);
+          e.target.blur();
+        })
+      })
     }
-
+  })
 }

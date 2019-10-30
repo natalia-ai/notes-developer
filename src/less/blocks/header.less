@@ -58,52 +58,6 @@
     z-index: -2;
   }
 
-  & a {
-    position: relative;
-    transition: @transition;
-
-    &::after {
-      content: "";
-      display: block;
-      width: calc(100% + 10px);
-      height: 2px;
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -5px;
-      background-color: rgba(0, 0, 0, 0);
-      transition: @transition;
-    }
-
-    &:hover {
-
-      &::after {
-        background-color: #ffff00;
-      }
-    }
-
-    &::before {
-      content: "";
-      display: block;
-
-      transition: @transition;
-
-      width: calc(100% + 10px);
-      height: calc(100% + 10px);
-
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      border: 1px solid rgba(0, 0, 0, 0);
-    }
-
-    &:focus {
-      &::before {
-        border: 1px solid #ffff00;
-      }
-    }
-  }
 }
 
 .header__logo {
@@ -112,9 +66,11 @@
   @media (min-width: @min-md) {
     display: flex;
     align-items: center;
+    padding-left: 20px;
 
     & svg {
-      margin-right: 20px;
+      margin-right: 5px;
+
     }
 
     & a {
@@ -125,6 +81,23 @@
       color: #ffffff;
       text-transform: uppercase;
       text-decoration: none;
+
+
+      &:focus span {
+        border-color: #ffff00;
+      }
+    }
+
+    & span {
+      display: inline-block;
+      border: 1px solid transparent;
+      border-bottom: 2px solid transparent;
+      padding: 5px 20px;
+
+      &:hover {
+        border-bottom-color: #ffff00;
+      }
+
     }
   }
 }
@@ -146,9 +119,30 @@
   font-weight: 400;
   outline: none;
 
+  position: relative;
+  transition: @transition;
+
+  border: 1px solid transparent;
+  border-bottom: 2px solid transparent;
+  box-sizing: border-box;
+
   @media (min-width: @min-md) {
-    padding: 5px 0 0;
-    margin-left: 40px;
+    padding: 5px 20px;
   }
 
+
+  &:hover {
+    border-bottom-color: #ffff00;
+  }
+
+  &:focus {
+    border-color: #ffff00;
+  }
+
+  &.link-home {
+    background-image: url(../img/home.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 37px;
+  }
 }
