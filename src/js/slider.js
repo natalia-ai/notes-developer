@@ -24,6 +24,7 @@ function slider(my_slider) {
     // ширина контроллера
     myWidhtController;
 
+
   // функция получения размеров
   function sizeSlider() {
     // получили ширину слайдера
@@ -46,6 +47,23 @@ function slider(my_slider) {
 
     // вернули все переменные что бы они были доступны везде
     return myWidhtSlider, myWidhtController, percentSlider, percentController;
+  }
+
+  // отслеживаем ресайз
+  window.addEventListener("resize", function () {
+    // заново получаем размеры слайдера
+    sizeSlider();
+    MoveSlider();
+  })
+
+  // получаем все размеры слайдера
+  sizeSlider();
+
+
+  // помечаем айтемы
+  for (let i = 0; i < arrSliderItem.length; i++) {
+    // добавляем отрибут data-count со значением индекса "i"
+    arrSliderItem[i].setAttribute("data-count", i);
   }
 
 
@@ -102,46 +120,6 @@ function slider(my_slider) {
     }
   }
 
-  // при отпускании кнопки мыши (поднятии пальца)
-  function mouseToucthUp() {
-    // если двигали слайдер
-    if (checkMouseDown) {
-      // отмечаем что кнопка мыши больше не зажата
-      checkMouseDown = false;
-      // убираем класс у списка, что бы вернуть курсор
-      sliderList.classList.remove("slider--active");
-    }
-
-    // если двигали контроллер
-    if (checkMouseDownController) {
-      // отмечаем что кнопка мыши больше не зажата
-      checkMouseDownController = false;
-      // убираем класс у списка, что бы вернуть курсор
-      controller.classList.remove("slider--active");
-    }
-  }
-
-  // при клике (касании) по контроллеру
-  function mouseTouthDownController(e) {
-
-    // кроссбраузерный event
-    e = e || event;
-
-    // координаты клика (касания)
-    startClientX = e.clientX || e.touches[0].clientX;
-
-    // стартовый margin контроллера
-    startMarginLeft = Number(getComputedStyle(controller).marginLeft.replace("px", ""));
-
-    // отмечаем что будем двигать контроллер
-    checkMouseDownController = true;
-
-    // задаем класс для изменения курсора
-    controller.classList.add("slider--active");
-
-    // возвращаем все переменные
-    return startClientX, startMarginLeft, checkMouseDownController;
-  }
 
   // движение контроллера
   function mouseToucthMoveController(e) {
@@ -175,6 +153,7 @@ function slider(my_slider) {
       sliderList.style.marginLeft = -newMarginLeftSlider + "px";
     }
   }
+
 
   // доводчик слайдера
   function MoveSlider() {
@@ -211,14 +190,50 @@ function slider(my_slider) {
     }
   }
 
-  // отслеживаем ресайз
-  window.addEventListener("resize", function () {
-    // заново получаем размеры слайдера
-    sizeSlider();
-    MoveSlider();
-  })
+  // при отпускании кнопки мыши (поднятии пальца)
+  function mouseToucthUp() {
+    // если двигали слайдер
+    if (checkMouseDown) {
+      // отмечаем что кнопка мыши больше не зажата
+      checkMouseDown = false;
+      // убираем класс у списка, что бы вернуть курсор
+      sliderList.classList.remove("slider--active");
+    }
 
-  // отслеживание клика и касания по слайдеру
+    // если двигали контроллер
+    if (checkMouseDownController) {
+      // отмечаем что кнопка мыши больше не зажата
+      checkMouseDownController = false;
+      // убираем класс у списка, что бы вернуть курсор
+      controller.classList.remove("slider--active");
+    }
+  }
+
+
+  // при клике (касании) по контроллеру
+  function mouseTouthDownController(e) {
+
+    // кроссбраузерный event
+    e = e || event;
+
+    // координаты клика (касания)
+    startClientX = e.clientX || e.touches[0].clientX;
+
+    // стартовый margin контроллера
+    startMarginLeft = Number(getComputedStyle(controller).marginLeft.replace("px", ""));
+
+    // отмечаем что будем двигать контроллер
+    checkMouseDownController = true;
+
+    // задаем класс для изменения курсора
+    controller.classList.add("slider--active");
+
+    // возвращаем все переменные
+    return startClientX, startMarginLeft, checkMouseDownController;
+  }
+
+
+  // отслеживание клика или касания по слайдеру
   // клик
   sliderList.addEventListener("mousedown", function (e) {
     mouseTouthDown(e);
@@ -236,6 +251,7 @@ function slider(my_slider) {
     mouseTouthDownController(e);
   })
 
+
   // отслеживаем движение курсора и пальца по слайдеру
   // курсор
   document.addEventListener("mousemove", function (e) {
@@ -252,6 +268,7 @@ function slider(my_slider) {
     mouseToucthMoveController(e);
   })
 
+
   // поднятие пальца с кнопки мыши (с сенсора)
   document.addEventListener("mouseup", function () {
     // поднятие пальуа при движение слайдера
@@ -266,6 +283,40 @@ function slider(my_slider) {
     MoveSlider();
   })
 
-  // получаем все размеры слайдера
-  sizeSlider();
+
+
+  window.addEventListener("keyup", function (e) {
+
+    e = e || event;
+
+    // если нажал на таб и есть ссылка в фокусе в слайдере
+    if (e.keyCode == 9 && my_slider.querySelector("a:focus")) {
+
+      // получили слайд с сылкой в фокусе
+      let itemSlider = e.target.parentNode.parentNode,
+        // получили метку слайда
+        dataCount = itemSlider.getAttribute("data-count");
+
+      // получили значение на сколько сдвинулись слайды
+      let xTranslate = myWidhtSlider * dataCount;
+
+      // если координата "x" открытого слайда не совпадает с координатой "x" самого слайдера
+      if (itemSlider.getBoundingClientRect().x != my_slider.getBoundingClientRect().x) {
+        // вычисляем разницу и добавляем к xTranslate
+        xTranslate = myWidhtSlider * dataCount - (itemSlider.getBoundingClientRect().x - my_slider.getBoundingClientRect().x) * dataCount;
+      }
+
+      // вернули слайды на место
+      sliderList.style.transform = "translateX(" + xTranslate + "px)";
+
+      // показали нужный слайд
+      sliderList.style.marginLeft = -myWidhtSlider * dataCount + "px";
+      // поставили контроллер на место
+      controller.style.marginLeft = myWidhtController * dataCount + "px";
+
+    }
+
+  })
+
+
 }
