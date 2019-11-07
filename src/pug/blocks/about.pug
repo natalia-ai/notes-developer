@@ -6,7 +6,7 @@ section#about.about
     .about__wrap
 
       .about__wrap-img
-        img(src="img/author.jpg")
+        img(src="img/author.jpg", alt="Фото атора сайта")
 
       .about__content
 
@@ -19,10 +19,10 @@ section#about.about
           
           h3.about__address-title Для связи со мной:
 
-          p.about_address-contact
+          a(href="tel:+7(904) 771-19-16").about_address-contact
             | +7(904) 771-19-16
 
-          p.about_address-contact
+          a(href="mailto: uzinok@yandex.ru").about_address-contact
             | uzinok@yandex.ru
 
-    a.btn.about__btn.popup-contact(href="#contact") Задать вопрос
+    a.btn.about__btn.popup-contact(href="#contact", aria-label="прокрутить до раздела контакты") Задать вопрос
