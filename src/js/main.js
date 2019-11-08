@@ -18,4 +18,6 @@ window.onload = function () {
 
   // скролл 
   myScroll ();
+
+  customTextarea();
 };
