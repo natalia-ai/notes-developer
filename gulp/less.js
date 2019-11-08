@@ -18,14 +18,12 @@ gulp.task("less", function () {
         }
       })
     }))
-    .pipe(sourcemaps.init())
     .pipe(less())
     .pipe(autoprefixer({
       grid: true,
       overrideBrowserslist: ['last 10 versions']
     }))
     .pipe(csso())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest("build/css"))
     .pipe(server.stream());
 });
