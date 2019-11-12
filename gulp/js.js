@@ -4,7 +4,7 @@ var gulp = require("gulp"),
 
 gulp.task("js", function () {
   return gulp.src("src/js/*.js")
-    .pipe(concat("main.js", {
+    .pipe(concat("home.js", {
       newLine: ";"
     }))
     .pipe(minify({
