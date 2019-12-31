@@ -181,14 +181,14 @@ function slider(my_slider) {
   // касание
   sliderList.addEventListener("touchstart", function (e) {
     mouseTouthDown(e);
-  })
+  }, { passive: false })
   // клик, касание по контроллеру
   controller.addEventListener("mousedown", function (e) {
     mouseTouthDownController(e);
   })
   controller.addEventListener("touchstart", function (e) {
     mouseTouthDownController(e);
-  })
+  }, { passive: false })
   // отслеживаем движение курсора или пальца по слайдеру
   // курсор
   document.addEventListener("mousemove", function (e) {
@@ -203,7 +203,7 @@ function slider(my_slider) {
     mouseToucthMove(e);
     // движение контроллера
     mouseToucthMoveController(e);
-  })
+  }, { passive: false })
   // поднятие пальца с кнопки мыши (с сенсора)
   document.addEventListener("mouseup", function () {
     // поднятие пальуа при движение слайдера
@@ -216,7 +216,7 @@ function slider(my_slider) {
     mouseToucthUp();
     // доводчик слайдера
     MoveSlider();
-  })
+  }, { passive: false })
 
   // отслеживаем ресайз
   window.addEventListener("resize", function () {

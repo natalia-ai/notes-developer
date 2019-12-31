@@ -38,7 +38,6 @@ function myScroll() {
         // from + to расстояние от верха документа до верха блока
         // from + to * progress промежуточное расстояние до блока. progress == 1 мы на месте
         // изменение высоты скролла
-        console.log(from + to * progress | 0)
         window.scrollTo(0, from + to * progress | 0);
 
         // остановка анимации

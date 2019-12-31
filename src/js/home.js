@@ -9,15 +9,17 @@ window.onload = function () {
   noJs();
 
   // вызов всех слайдеров
-  slider( document.querySelector(".slider_1-js") );
-  slider( document.querySelector(".slider_2-js") );
-  slider( document.querySelector(".slider_3-js") );
+  // slider( document.querySelector(".slider_1-js") );
+
+  let arrSliders = this.document.querySelectorAll(".slider-wrap");
+
+  for (let i = 0; i < arrSliders.length; i++) {
+    slider( arrSliders[i] );
+  }
 
   // вызов всплывающего окна
   popupContact ();
 
   // скролл 
   myScroll ();
-
-  customTextarea();
 };
