@@ -88,12 +88,18 @@ section {
 }
 
 .section-title {
-  font-size: 49px;
+  font-size: 35px;
   text-transform: uppercase;
   text-align: center;
   font-weight: 400;
   margin: 0;
+  padding: 50px 0 0;
+  @media (min-width: @min-md) {
+    font-size: 39px;
+    padding: 0;
+  }
 }
+
 
 .no-js {
   min-height: 100vh;
