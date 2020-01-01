@@ -22,4 +22,7 @@ window.onload = function () {
 
   // скролл 
   myScroll ();
+
+  // валидация формы
+  orderForm();
 };

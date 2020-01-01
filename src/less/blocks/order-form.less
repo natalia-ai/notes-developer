@@ -3,7 +3,7 @@
   background-color: #fff;
   padding: 30px 15px;
   box-sizing: border-box;
-
+  
   @media (min-width: @min-md) {
     width: 718px;
     padding: 70px 80px 50px;
@@ -11,7 +11,7 @@
     flex-direction: column;
     align-items: center;
   }
-
+  
   .pos-rel {
     width: 100%;
   }
@@ -21,7 +21,7 @@
 .input-block {
   display: flex;
   flex-direction: column;
-
+  
   @media (min-width: @min-md) {
     width: 100%;
     flex-direction: row;
@@ -32,31 +32,31 @@
 .input-inner,
 .for_textarea {
   @font-size: 14px;
-
+  
   padding: 0;
   margin: 0 0 18px;
   box-shadow: none;
   border: none;
   background-color: #fff;
-  padding: 5px 0;
+  padding: 0.4em 0;
   border-bottom: 1px solid #000;
   width: 100%;
-  height: @font-size + 5px * 2;
+  min-height: 1.8em;
   box-sizing: border-box;
   font-family: "Open Sans", Arial, Helvetica, sans-serif;
   font-size: @font-size;
   line-height: 1;
   outline: none;
   transition: @transition;
-
+  
   @media (min-width: @min-md) {
     width: 165px;
   }
-
+  
   &:hover {
     border-bottom-color: #ffff00;
   }
-
+  
   &:focus {
     border-bottom-color: #ffff00;
     background-color: rgba(255, 255, 0, 0.2);
@@ -65,6 +65,7 @@
 
 .inner-textarea {
   overflow: hidden;
+  height: 1.8em;
 }
 
 .inner-textarea,
@@ -72,7 +73,7 @@
   margin-bottom: 40px;
   line-height: 1;
   word-break: break-all;
-
+  
   @media (min-width: @min-md) {
     width: 100%;
   }
@@ -84,7 +85,6 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
   z-index: -999;
   visibility: hidden;
 }
@@ -101,4 +101,25 @@
     background-color: rgba(0, 0, 0, 0);
     box-shadow: none;
   }
+}
+
+.js_error_message {
+  position: absolute;
+  background-color: red;
+  padding: 2px 4px;
+  display: inline-block;
+  font-size: 12px;
+  color: #fff;
+  border-radius: 5px;
+  z-index: 999999;
+}
+
+.js_error_message::after {
+  display: block;
+  content: "";
+  position: absolute;
+  border: 10px solid transparent;
+  border-top-color: red;
+  left: 15px;
+  bottom: -20px
 }
