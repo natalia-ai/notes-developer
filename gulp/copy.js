@@ -10,8 +10,12 @@ gulp.task("copy", function () {
     .pipe(gulp.dest("build"));
 });
 
-
-gulp.task("copy_script", function (){
+gulp.task("copy_script", function () {
   return gulp.src("src/scripts/*.js")
     .pipe(gulp.dest("build/js"));
+})
+
+gulp.task("copy_php", function () {
+  return gulp.src("src/php/*.php")
+    .pipe(gulp.dest("build/php"));
 })

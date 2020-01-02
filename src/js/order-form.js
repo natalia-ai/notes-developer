@@ -153,15 +153,12 @@ function orderForm() {
       return false;
     }
 
-    // if (document.querySelector("[name='review']").value)
-    //   param += "&review=" + document.querySelector("[name='review']").value;
-
     // отправка данных
     if (bul == true) {
 
       var xhr = new XMLHttpRequest();
 
-      xhr.open('POST', './php/contact_form.php', true);
+      xhr.open('POST', './wp-content/themes/notesdeveloper/template-parts/order-form.php', true);
 
       xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
 
